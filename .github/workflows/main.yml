@@ -1,0 +1,27 @@
+name: flask app dev and prod mode
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'mode type'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - prod
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build -t flask_docker --build-arg MODE=--${{inputs.mode}} . 
+      - name: Run the Docker image
+        run: docker run -d -p 3000:3000 flask_docker
+
+
+

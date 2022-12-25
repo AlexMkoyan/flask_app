@@ -9,4 +9,4 @@ CMD ["python3","./index.py","${MODE}","1"]
 
 # docker build -t flask_docker .
 # docker run -d -p 3000:3000 flask_docker
-# docker build -t flask_docker --build-arg MODE=--prod .
+# docker build -t flask_docker --build-arg MODE=--prod or --dev.
